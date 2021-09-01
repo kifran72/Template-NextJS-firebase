@@ -2,20 +2,27 @@ import React from "react";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
+import interactionPlugin from "@fullcalendar/interaction";
 
 // Styles
 import styles from "../styles/Calendar.module.css";
 
 // Components
 import Navbar from "../components/navbar";
+import ModalEvent from "../components/modal";
 
 export default function Planning(props) {
   const user = props.user;
-
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  let [infoEvent, setInfo] = React.useState(null);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   useEffect(() => {
     if (!user) {
       router.push("/");
@@ -32,15 +39,30 @@ export default function Planning(props) {
         />
       </Head>
       <Navbar user={user} />
-      <div>
-        <h1>Planning</h1>
-        <br />
+      <h1>Planning</h1>
+      <br />
+      <div className={styles.calendar}>
         <FullCalendar
-          plugins={[dayGridPlugin]}
+          plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
-          className={styles.calendar}
+          dateClick={(info) => {
+            setOpen(true);
+            setInfo({
+              dateStr: info.dateStr,
+              date: info.date,
+            });
+          }}
+          selectable={false}
+          // select={(info) => {
+          //   console.log("click", info);
+          // }}
+          editable={true}
+          eventClick={(info) => {
+            console.log("click", info);
+          }}
         />
       </div>
+      <ModalEvent open={open} handleClose={handleClose} infoEvent={infoEvent} />
     </div>
   );
 }
