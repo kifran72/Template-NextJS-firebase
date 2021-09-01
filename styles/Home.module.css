@@ -1,0 +1,11 @@
+.container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.banner {
+  /* display: flex; */
+  text-align: center;
+}

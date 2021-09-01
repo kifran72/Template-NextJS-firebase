@@ -1,0 +1,24 @@
+.container {
+  align-items: center;
+  display: contents;
+  width: 100%;
+  padding: 2rem;
+}
+
+.navbar {
+  background-color: #0d1017;
+}
+
+.navbar button {
+  color: white;
+}
+
+.button:hover {
+  text-decoration: none !important;
+  background-color: rgb(45 70 93) !important;
+}
+
+.listeButton {
+  display: flex;
+  justify-content: space-around;
+}
