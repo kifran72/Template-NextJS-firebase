@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Web app's Firebase configuration
 const firebaseConfig = {
@@ -20,6 +21,40 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore();
+
+const test = async (user, infoEvent) => {
+  try {
+    await addDoc(collection(db, "events"), {
+      id: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      start: infoEvent.start,
+      title: infoEvent.title,
+      allDay: infoEvent.allDay,
+      display: infoEvent.display,
+    });
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+const test2 = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const events = [];
+      const querySnapshot = await getDocs(collection(db, "events"));
+      querySnapshot.forEach((doc) => {
+        events.push(doc.data());
+      });
+
+      resolve(events);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 const provider = new GoogleAuthProvider();
 
 const loginGoogle = () => {
@@ -35,7 +70,6 @@ const loginGoogle = () => {
         token,
         user,
       };
-
       return info;
     })
     .catch((error) => {
@@ -60,4 +94,4 @@ const logout = () => {
     });
 };
 
-export { auth, provider, loginGoogle, logout };
+export { auth, provider, test2, loginGoogle, logout, test };

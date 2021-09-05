@@ -6,11 +6,15 @@
 }
 
 .navbar {
-  background-color: #0d1017;
+  background-color: #0b0c12;
+  height: 4rem;
+  display: flex;
+  justify-content: center;
 }
 
 .navbar button {
   color: white;
+  width: 100%;
 }
 
 .button:hover {
@@ -21,4 +25,5 @@
 .listeButton {
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }

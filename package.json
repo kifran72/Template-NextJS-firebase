@@ -4,11 +4,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "clean": "rimraf nextjs/",
     "dev": "next dev",
+    "clean": "rimraf functions/ out/",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "predeploy": "npm run clean && next build",
+    "predeploy": "yarn clean && next build && next export",
     "deploy": "firebase deploy"
   },
   "dependencies": {
@@ -20,7 +21,9 @@
     "@fullcalendar/daygrid": "^5.9.0",
     "@fullcalendar/interaction": "^5.9.0",
     "@fullcalendar/react": "^5.9.0",
+    "@fullcalendar/timegrid": "^5.9.0",
     "@material-ui/core": "^4.12.3",
+    "axios": "^0.21.3",
     "babel-plugin-transform-require-ignore": "^0.1.1",
     "cpx": "^1.5.0",
     "cross-env": "^7.0.3",
@@ -32,6 +35,11 @@
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-firebase-hooks": "^3.0.4",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "swr": "^1.0.0"
+  },
+  "devDependencies": {
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2"
   }
 }

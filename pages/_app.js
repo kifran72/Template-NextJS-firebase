@@ -1,16 +1,23 @@
-import React from "react";
+import dynamic from "next/dynamic";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/app";
+import { auth } from "@/components/firebase.js";
+import { useEffect } from "react";
+
+//components
+const NotLogged = dynamic(() => import("./notLogged.js"));
+const Loading = dynamic(() => import("@/components/loading.js"));
 
 // Styles
 import "../styles/globals.css";
-import "@fullcalendar/common/main.css";
-import "@fullcalendar/daygrid/main.css";
 
-function MyApp({ Component, pageProps }) {
-  const [user] = useAuthState(auth);
+const MyApp = ({ Component, pageProps }) => {
+  const [user, loading] = useAuthState(auth);
 
+  useEffect(() => {}, [user]);
+
+  if (loading) return <Loading />;
+  if (!user) return <NotLogged user={user} />;
   return <Component user={user} {...pageProps} />;
-}
+};
 
 export default MyApp;

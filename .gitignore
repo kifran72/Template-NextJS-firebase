@@ -90,6 +90,7 @@ typings/
 # next.js build output
 .next
 out/
+functions/
 
 # nuxt.js build output
 .nuxt

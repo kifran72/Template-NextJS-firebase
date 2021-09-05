@@ -1,27 +1,26 @@
-import React from "react";
-import Head from "next/head";
+import dynamic from "next/dynamic";
+const Head = dynamic(() => import("next/head"));
 
 //Styles
 import styles from "../styles/Home.module.css";
 
 // Components
-import Navbar from "../components/navbar";
-import Background from "../components/background";
+const Navbar = dynamic(() => import("@/components/navbar"));
+const Background = dynamic(() => import("@/components/background"));
 
-export default function Home(props) {
+const Home = (props) => {
   const user = props.user;
-
   return (
     <div className={styles.container}>
       <Head>
         <title>Home</title>
-        <link
-          rel="icon"
-          href="https://firebasestorage.googleapis.com/v0/b/test-7b8b7.appspot.com/o/IMG_20210802_185402_Bokeh-min.jpg?alt=media&token=51c262bc-46c7-4ecf-a5b3-a258d747ba3f"
-        />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="icon" href="/IconOnglet.jpg" />
       </Head>
       <Navbar user={user} />
       <Background user={user} />
     </div>
   );
-}
+};
+
+export default Home;

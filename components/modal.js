@@ -1,17 +1,21 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import dynamic from "next/dynamic";
+
+// Material
+const Button = dynamic(() => import("@material-ui/core/Button"));
+const Dialog = dynamic(() => import("@material-ui/core/Dialog"));
+const DialogActions = dynamic(() => import("@material-ui/core/DialogActions"));
+const DialogContent = dynamic(() => import("@material-ui/core/DialogContent"));
+const DialogContentText = dynamic(() =>
+  import("@material-ui/core/DialogContentText")
+);
+const DialogTitle = dynamic(() => import("@material-ui/core/DialogTitle"));
 
 const ModalEvent = (props) => {
   let open = props.open;
   let handleClose = props.handleClose;
   let infoEvent = props.infoEvent;
   let dateStr = infoEvent ? infoEvent.dateStr : null;
-  //   console.log(infoEvent);
+
   return (
     <div>
       <Dialog

@@ -35,8 +35,9 @@
   "hosting": [
     {
       "site": "test-7b8b7",
-      "public": "public/",
+      "public": "out/",
       "cleanUrls": true,
+      "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
       "rewrites": [
         {
           "source": "**",

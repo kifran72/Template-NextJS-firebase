@@ -1,10 +1,15 @@
-import React from "react";
-import { loginGoogle, logout } from "../firebase/app";
-import Link from "next/link";
+import dynamic from "next/dynamic";
+import { loginGoogle, logout } from "./firebase.js";
+
+const Link = dynamic(() => import("next/link"));
 
 // Styles
 import styles from "../styles/Navbar.module.css";
-import Button from "@material-ui/core/Button";
+
+// Material
+const Button = dynamic(() => import("@material-ui/core/Button"));
+
+// Components
 
 export default function Navbar(props) {
   const user = props.user;
@@ -19,9 +24,11 @@ export default function Navbar(props) {
           <Link href="/planning">
             <Button className={styles.button}>Planning</Button>
           </Link>
-          <Button onClick={logout} className={styles.button}>
-            Logout
-          </Button>
+          <Link href="/notLogged">
+            <Button onClick={logout} className={styles.button}>
+              Logout
+            </Button>
+          </Link>
         </div>
       ) : (
         <Button onClick={loginGoogle} className={styles.button}>

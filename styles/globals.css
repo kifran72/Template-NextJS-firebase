@@ -7,6 +7,8 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow: hidden;
+  text-size-adjust: 80%;
 }
 
 #__next {
@@ -22,6 +24,17 @@ a {
   box-sizing: border-box;
 }
 
+/* Custom FullCalendar */
 .fc-daygrid-day-frame:hover {
   cursor: pointer !important;
+}
+
+@media (max-width: 641px) {
+  .fc .fc-toolbar.fc-header-toolbar {
+    flex-direction: column-reverse !important;
+  }
+
+  .fc-toolbar-chunk {
+    margin: 0.5rem;
+  }
 }
