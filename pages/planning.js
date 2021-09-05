@@ -1,6 +1,10 @@
 import dynamic from "next/dynamic";
 import { useEffect, useState, Component } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/app";
+// const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 // Styles
 import styles from "../styles/Calendar.module.css";
@@ -12,20 +16,20 @@ const ModalEvent = dynamic(() => import("@/components/modal"));
 const Calendar = dynamic(() => import("@/components/calendar"));
 
 // Storage
-import { test } from "@/components/firebase";
+import { test, test2 } from "@/firebase/firestore";
 
-const Planning = (props) => {
-  const user = props.user;
+const Planning = ({ props }) => {
+  const [user] = useAuthState(auth);
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  let [infoEvent, setInfoEvent] = useState(null);
-
+  const [infoEvent, setInfoEvent] = useState(null);
+  // console.log(props);
   const handleClose = () => {
     test(user, infoEvent);
     setOpen(false);
   };
 
-  useEffect(async () => {
+  useEffect(() => {
     if (!user) {
       router.push("/");
     }
@@ -49,3 +53,11 @@ const Planning = (props) => {
 };
 
 export default Planning;
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      // events: await test2(),
+    }, // will be passed to the page component as props
+  };
+}

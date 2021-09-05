@@ -90,7 +90,6 @@ typings/
 # next.js build output
 .next
 out/
-functions/
 
 # nuxt.js build output
 .nuxt
@@ -124,3 +123,4 @@ tmp/
 temp/
 
 # End of https://www.gitignore.io/api/node,firebase
+functions

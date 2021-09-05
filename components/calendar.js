@@ -3,17 +3,12 @@ import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
-import axios from "axios";
-import useSWR from "swr";
-import { test2 } from "@/components/firebase";
-
-const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 const Calendar = (props) => {
   const setOpen = props.setOpen;
   const setInfoEvent = props.setInfoEvent;
   const events = [];
-  console.log(props);
+
   return (
     <FullCalendar
       headerToolbar={{
@@ -39,7 +34,7 @@ const Calendar = (props) => {
       // }}
       editable={true}
       eventClick={(info) => {
-        console.log("click", info);
+        // console.log("click", info);
       }}
       height={500}
       contentHeight={"100%"}
@@ -58,14 +53,3 @@ const Calendar = (props) => {
 };
 
 export default Calendar;
-
-export async function getStaticProps(context) {
-  let res = await test2();
-  let events = await res.json();
-  console.log(events);
-  return {
-    props: {
-      events,
-    }, // will be passed to the page component as props
-  };
-}

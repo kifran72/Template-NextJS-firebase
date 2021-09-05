@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/firebase/app";
 
 //Styles
 import styles from "../styles/NotLogged.module.css";
@@ -12,14 +14,9 @@ const Navbar = dynamic(() => import("../components/navbar"));
 const Background = dynamic(() => import("../components/background"));
 
 export default function Home(props) {
-  const user = props.user;
+  const [user] = useAuthState(auth);
   const router = useRouter();
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/");
-    }
-  });
   return (
     <div className={styles.container}>
       <Head>
@@ -31,4 +28,13 @@ export default function Home(props) {
       <Background user={user} />
     </div>
   );
+}
+
+export async function getStaticProps(context) {
+  return {
+    redirect: {
+      destination: "/",
+      permanent: false,
+    },
+  };
 }

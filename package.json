@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "clean": "rimraf functions/ out/",
+    "clean": "rimraf functions/ out/ .firebase",
     "lint": "next lint",
     "build": "next build",
     "start": "next start",

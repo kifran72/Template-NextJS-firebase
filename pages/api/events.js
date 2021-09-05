@@ -1,4 +1,4 @@
-import { test2 } from "@/components/firebase";
+import { test2 } from "@/components/firebase/firebase";
 let events = [];
 export default function handler(req, res) {
   // events = test2();

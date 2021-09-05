@@ -1,7 +1,6 @@
 import dynamic from "next/dynamic";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/components/firebase.js";
-import { useEffect } from "react";
+import { auth } from "@/firebase/app";
 
 //components
 const NotLogged = dynamic(() => import("./notLogged.js"));
@@ -12,12 +11,9 @@ import "../styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   const [user, loading] = useAuthState(auth);
-
-  useEffect(() => {}, [user]);
-
   if (loading) return <Loading />;
-  if (!user) return <NotLogged user={user} />;
-  return <Component user={user} {...pageProps} />;
+  if (!user) return <NotLogged />;
+  return <Component {...pageProps} />;
 };
 
 export default MyApp;
