@@ -1,5 +1,5 @@
 //Styles
-import styles from "../styles/BackgroundAnimation.module.css";
+import styles from "@styles/BackgroundAnimation.module.css";
 
 export default function Background(props) {
   const user = props.user;

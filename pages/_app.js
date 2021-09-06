@@ -7,7 +7,7 @@ const Home = dynamic(() => import("./index.js"));
 const Loading = dynamic(() => import("@components/loading.js"));
 
 // Styles
-import "../styles/globals.css";
+import "@styles/globals.css";
 
 const MyApp = ({ Component, pageProps }) => {
   const [user, loading] = useAuthState(auth);

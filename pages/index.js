@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@utils/firebase";
 
 //Styles
-import styles from "../styles/Home.module.css";
+import styles from "@styles/Home.module.css";
 
 // Components
 const Navbar = dynamic(() => import("@components/navbar"));

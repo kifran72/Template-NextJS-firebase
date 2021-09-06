@@ -4,16 +4,13 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
 import { useState, useEffect } from "react";
-import { auth, AddEvent } from "@utils/firebase";
+import { auth, AddEvent, getEvents } from "@utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
-import axios from "axios";
-
-const getEvents = async () => (await axios.get("/api/events")).data;
 
 // Components
 const ModalEvent = dynamic(() => import("@components/modal"));
 
-const Calendar = (props) => {
+const Calendar = () => {
   const [user] = useAuthState(auth);
   const [Events, setEvents] = useState([]);
   const [infoEvent, setInfoEvent] = useState(null);
@@ -28,9 +25,8 @@ const Calendar = (props) => {
 
   useEffect(() => {
     getEvents()
-      .then((events) => {
-        setEvents(events);
-        console.log(events);
+      .then((test) => {
+        setEvents(test);
       })
       .catch((error) => console.error("failFetch", error));
   }, [reload]);
