@@ -4,7 +4,6 @@ const withTM = require("next-transpile-modules")([
   "@fullcalendar/daygrid",
   "@fullcalendar/timegrid",
 ]);
-
 module.exports = withTM({
   reactStrictMode: false,
   distDir: "functions/next",

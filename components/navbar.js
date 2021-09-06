@@ -1,5 +1,5 @@
 import dynamic from "next/dynamic";
-import { login, logout } from "./firebase/googleAuth";
+import { login, logout } from "@utils/auth/google";
 
 const Link = dynamic(() => import("next/link"));
 
@@ -24,7 +24,7 @@ export default function Navbar(props) {
           <Link href="/planning">
             <Button className={styles.button}>Planning</Button>
           </Link>
-          <Link href="/notLogged">
+          <Link href="/">
             <Button onClick={logout} className={styles.button}>
               Logout
             </Button>

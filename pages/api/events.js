@@ -1,8 +1,6 @@
-import { test2 } from "@/components/firebase/firebase";
-let events = [];
-export default function handler(req, res) {
-  // events = test2();
-  // console.log(events);
-  let toto = "toto";
-  res.status(200).json(toto);
+import { getEvents } from "@utils/firebase";
+
+export default async function handler(req, res) {
+  const events = await getEvents();
+  res.status(200).json(events);
 }

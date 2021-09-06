@@ -1,9 +1,15 @@
+import FirebaseConfig from "../firebaseConfig";
+import { initializeApp } from "firebase/app";
+
 import {
   getAuth,
   signInWithPopup,
   GoogleAuthProvider,
   signOut,
 } from "firebase/auth";
+
+// Initialize Firebase
+initializeApp(FirebaseConfig);
 
 const auth = getAuth();
 const provider = new GoogleAuthProvider();
@@ -45,4 +51,4 @@ const logout = () => {
     });
 };
 
-export { login, logout };
+export { login, logout, auth };

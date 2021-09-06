@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import axios from "axios";
 
 // Material
 const Button = dynamic(() => import("@material-ui/core/Button"));
@@ -12,9 +13,14 @@ const DialogTitle = dynamic(() => import("@material-ui/core/DialogTitle"));
 
 const ModalEvent = (props) => {
   let open = props.open;
+  let setOpen = props.setOpen;
   let handleClose = props.handleClose;
   let infoEvent = props.infoEvent;
   let dateStr = infoEvent ? infoEvent.dateStr : null;
+
+  const close = () => {
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -36,7 +42,7 @@ const ModalEvent = (props) => {
           <Button onClick={handleClose} color="primary">
             Ok
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button onClick={close} color="primary" autoFocus>
             Annuler
           </Button>
         </DialogActions>

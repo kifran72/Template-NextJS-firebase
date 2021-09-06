@@ -1,14 +1,14 @@
 import dynamic from "next/dynamic";
 const Head = dynamic(() => import("next/head"));
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "@/firebase/app";
+import { auth } from "@utils/firebase";
 
 //Styles
 import styles from "../styles/Home.module.css";
 
 // Components
-const Navbar = dynamic(() => import("@/components/navbar"));
-const Background = dynamic(() => import("@/components/background"));
+const Navbar = dynamic(() => import("@components/navbar"));
+const Background = dynamic(() => import("@components/background"));
 
 const Home = (props) => {
   const [user] = useAuthState(auth);

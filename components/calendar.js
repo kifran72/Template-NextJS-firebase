@@ -1,54 +1,89 @@
-import { Component } from "react";
+import dynamic from "next/dynamic";
 import FullCalendar from "@fullcalendar/react"; // must go before plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
 import dayGridPlugin from "@fullcalendar/daygrid"; // a plugin!
 import interactionPlugin from "@fullcalendar/interaction";
+import { useState, useEffect } from "react";
+import { auth, AddEvent } from "@utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import axios from "axios";
+
+const getEvents = async () => (await axios.get("/api/events")).data;
+
+// Components
+const ModalEvent = dynamic(() => import("@components/modal"));
 
 const Calendar = (props) => {
-  const setOpen = props.setOpen;
-  const setInfoEvent = props.setInfoEvent;
-  const events = [];
+  const [user] = useAuthState(auth);
+  const [Events, setEvents] = useState([]);
+  const [infoEvent, setInfoEvent] = useState(null);
+  const [reload, setReload] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const handleClose = async () => {
+    await AddEvent(user, infoEvent);
+    setOpen(false);
+    setReload(!reload);
+  };
+
+  useEffect(() => {
+    getEvents()
+      .then((events) => {
+        setEvents(events);
+        console.log(events);
+      })
+      .catch((error) => console.error("failFetch", error));
+  }, [reload]);
 
   return (
-    <FullCalendar
-      headerToolbar={{
-        center: "prevYear,dayGridMonth,timeGridWeek,timeGridDay,nextYear",
-      }}
-      plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-      initialView="dayGridMonth"
-      dateClick={(info) => {
-        setOpen(true);
-        setInfoEvent({
-          dateStr: info.dateStr,
-          start: info.date,
-          id: "a",
-          title: "my event",
-          display: "block",
-          allDay: true,
-        });
-      }}
-      nowIndicator={true}
-      selectable={false}
-      // select={(info) => {
-      //   console.log("click", info);
-      // }}
-      editable={true}
-      eventClick={(info) => {
-        // console.log("click", info);
-      }}
-      height={500}
-      contentHeight={"100%"}
-      expandRows={true}
-      events={events}
-      eventResize={(info) => {
-        alert(info.event.title + " end is now " + info.event.end.toISOString());
-
-        if (!confirm("is this okay?")) {
-          info.revert();
-        }
-      }}
-      weekends={false}
-    />
+    <div>
+      <FullCalendar
+        headerToolbar={{
+          center: "prevYear,dayGridMonth,timeGridWeek,timeGridDay,nextYear",
+        }}
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        initialView="dayGridMonth"
+        dateClick={(info) => {
+          setOpen(true);
+          setInfoEvent({
+            dateStr: info.dateStr,
+            start: info.date,
+            id: "a",
+            title: "my event",
+            display: "block",
+            allDay: true,
+          });
+        }}
+        nowIndicator={true}
+        selectable={false}
+        // select={(info) => {
+        //   console.log("click", info);
+        // }}
+        editable={true}
+        eventClick={(info) => {
+          // console.log("click", info);
+        }}
+        height={500}
+        contentHeight={"100%"}
+        expandRows={true}
+        events={Events}
+        eventResize={(info) => {
+          console.log(info.event.title);
+          console.log(info.event.end.toISOString());
+        }}
+        weekends={false}
+        eventDrop={(event) => {
+          console.log(event.event.title);
+          console.log(event.event.start);
+        }}
+      />
+      <ModalEvent
+        open={open}
+        setOpen={setOpen}
+        handleClose={handleClose}
+        infoEvent={infoEvent}
+      />
+    </div>
   );
 };
 

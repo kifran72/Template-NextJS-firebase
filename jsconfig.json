@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/firebase/*": ["components/firebase/*"]
+      "*": ["node_modules/*"],
+      "@components/*": ["components/*"],
+      "@utils/*": ["utils/*"]
     }
   }
 }
