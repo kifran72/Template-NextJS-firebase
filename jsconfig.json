@@ -4,8 +4,9 @@
     "paths": {
       "*": ["node_modules/*"],
       "@components/*": ["components/*"],
+      "@components/styles/*": ["components/styles/*"],
       "@utils/*": ["utils/*"],
-      "@styles/*": ["styles/*"]
+      "@css/*": ["styles/*"]
     }
   }
 }

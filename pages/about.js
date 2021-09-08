@@ -3,41 +3,36 @@ const Head = dynamic(() => import("next/head"));
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@utils/firebase";
 
-//Styles
-import styles from "@css/Home.module.css";
+// CUSTOM CSS
+import styles from "@css/about.module.css";
 
 // Material
+const Fab = dynamic(() => import("@material-ui/core/Fab"));
+const Toolbar = dynamic(() => import("@material-ui/core/Toolbar"));
 const KeyboardArrowUpIcon = dynamic(() =>
   import("@material-ui/icons/KeyboardArrowUp")
 );
-const Fab = dynamic(() => import("@material-ui/core/Fab"));
-const Toolbar = dynamic(() => import("@material-ui/core/Toolbar"));
 
 // Components
+const About = dynamic(() => import("@components/about"));
 const Navbar = dynamic(() => import("@components/styles/navbar"));
 const Background = dynamic(() => import("@components/styles/background"));
-const Vitrine = dynamic(() => import("@components/vitrine"));
 const ScrollTop = dynamic(() => import("@components/styles/scrollTop"));
-const ElevationScroll = dynamic(() =>
-  import("@components/styles/elevationScroll")
-);
 
-const Home = (props) => {
+const AboutPage = (props) => {
   const [user] = useAuthState(auth);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>Accueil</title>
+        <title>A-Propos</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/IconOnglet.jpg" />
       </Head>
-      <ElevationScroll {...props}>
-        <Navbar user={user} />
-      </ElevationScroll>
+      <Navbar user={user} />
       <Toolbar id="back-to-top-anchor" />
-      <Background user={user} />
-      <Vitrine />
+      {/* <Background user={user} /> */}
+      <About />
       <ScrollTop {...props}>
         <Fab color="primary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
@@ -47,4 +42,4 @@ const Home = (props) => {
   );
 };
 
-export default Home;
+export default AboutPage;

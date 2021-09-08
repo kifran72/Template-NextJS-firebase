@@ -1,25 +1,25 @@
 .container {
-  position: absolute;
+  position: relative;
   height: 100%;
   width: 100%;
-  z-index: -1;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  /* z-index: -1; */
+  background: #343742;
+
+  /* background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%); */
 }
 
 .title {
-  position: absolute;
-  top: 34%;
-  left: 0;
-  right: 0;
+  height: 20rem;
   color: #fff;
-  text-align: center;
   font-family: "lato", sans-serif;
-  font-weight: 300;
   font-size: 181%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .title span {
-  background: -webkit-linear-gradient(white, #38495a);
+  background: -webkit-linear-gradient(white, white);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

@@ -8,7 +8,7 @@ import { auth, AddEvent, getEvents } from "@utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 // Components
-const ModalEvent = dynamic(() => import("@components/modal"));
+const ModalEvent = dynamic(() => import("@components/styles/modal"));
 
 const Calendar = () => {
   const [user] = useAuthState(auth);
@@ -34,6 +34,7 @@ const Calendar = () => {
   return (
     <div>
       <FullCalendar
+        locale={"fr"}
         headerToolbar={{
           center: "prevYear,dayGridMonth,timeGridWeek,timeGridDay,nextYear",
         }}
@@ -51,7 +52,7 @@ const Calendar = () => {
           });
         }}
         nowIndicator={true}
-        selectable={false}
+        selectable={true}
         // select={(info) => {
         //   console.log("click", info);
         // }}
@@ -59,7 +60,7 @@ const Calendar = () => {
         eventClick={(info) => {
           // console.log("click", info);
         }}
-        height={500}
+        height={400}
         contentHeight={"100%"}
         expandRows={true}
         events={Events}
@@ -72,6 +73,7 @@ const Calendar = () => {
           console.log(event.event.title);
           console.log(event.event.start);
         }}
+        longPressDelay={100}
       />
       <ModalEvent
         open={open}

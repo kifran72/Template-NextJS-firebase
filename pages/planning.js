@@ -5,11 +5,11 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@utils/firebase";
 
 // Styles
-import styles from "@styles/Calendar.module.css";
+import styles from "@css/Calendar.module.css";
 
 // Components
 const Head = dynamic(() => import("next/head"));
-const Navbar = dynamic(() => import("@components/navbar"));
+const Navbar = dynamic(() => import("@components/styles/navbar"));
 const Calendar = dynamic(() => import("@components/calendar"));
 
 const Planning = () => {

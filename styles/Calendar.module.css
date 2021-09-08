@@ -5,6 +5,7 @@
   font-size: 75%;
   /* color: white; */
   /* height: 100%; */
+  overflow: hidden;
 }
 .calendar {
   padding: 4rem;
