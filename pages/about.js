@@ -18,7 +18,9 @@ const About = dynamic(() => import("@components/about"));
 const Navbar = dynamic(() => import("@components/styles/navbar"));
 const Background = dynamic(() => import("@components/styles/background"));
 const ScrollTop = dynamic(() => import("@components/styles/scrollTop"));
-
+const ElevationScroll = dynamic(() =>
+  import("@components/styles/elevationScroll")
+);
 const AboutPage = (props) => {
   const [user] = useAuthState(auth);
 
@@ -29,12 +31,14 @@ const AboutPage = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/IconOnglet.jpg" />
       </Head>
-      <Navbar user={user} />
+      <Background user={user} />
+      <ElevationScroll {...props}>
+        <Navbar user={user} page="about" />
+      </ElevationScroll>
       <Toolbar id="back-to-top-anchor" />
-      {/* <Background user={user} /> */}
       <About />
       <ScrollTop {...props}>
-        <Fab color="primary" size="small" aria-label="scroll back to top">
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

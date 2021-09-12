@@ -60,8 +60,8 @@ const Calendar = () => {
         eventClick={(info) => {
           // console.log("click", info);
         }}
-        height={400}
-        contentHeight={"100%"}
+        height={"auto"}
+        contentHeight={"auto"}
         expandRows={true}
         events={Events}
         eventResize={(info) => {

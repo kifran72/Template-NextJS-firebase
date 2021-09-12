@@ -11,6 +11,7 @@ import styles from "@css/Calendar.module.css";
 const Head = dynamic(() => import("next/head"));
 const Navbar = dynamic(() => import("@components/styles/navbar"));
 const Calendar = dynamic(() => import("@components/calendar"));
+const Background = dynamic(() => import("@components/styles/background"));
 
 const Planning = () => {
   const [user] = useAuthState(auth);
@@ -29,7 +30,9 @@ const Planning = () => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/IconOnglet.jpg" />
       </Head>
-      <Navbar user={user} />
+      <Background user={user} />
+
+      <Navbar user={user} page="planning" />
       <div className={styles.calendar}>
         <h1>Planning</h1>
         <Calendar />

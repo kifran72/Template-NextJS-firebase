@@ -32,14 +32,15 @@ const Home = (props) => {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <link rel="icon" href="/IconOnglet.jpg" />
       </Head>
+
+      <Background user={user} />
       <ElevationScroll {...props}>
-        <Navbar user={user} />
+        <Navbar user={user} page="home" />
       </ElevationScroll>
       <Toolbar id="back-to-top-anchor" />
-      <Background user={user} />
       <Vitrine />
       <ScrollTop {...props}>
-        <Fab color="primary" size="small" aria-label="scroll back to top">
+        <Fab color="secondary" size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>
