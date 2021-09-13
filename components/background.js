@@ -1,13 +1,10 @@
 //Styles
-import styles from "@styles/BackgroundAnimation.module.css";
+import styles from "@css/background.module.css";
 
 export default function Background(props) {
   const user = props.user;
   return (
     <div className={styles.container}>
-      {/* <div className={styles.stars}></div>
-      <div className={styles.stars2}></div>
-      <div className={styles.stars3}></div> */}
       <div className={styles.title}>
         <span>
           {" "}

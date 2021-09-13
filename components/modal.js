@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import axios from "axios";
 
 // Material
 const Button = dynamic(() => import("@material-ui/core/Button"));

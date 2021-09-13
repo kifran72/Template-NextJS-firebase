@@ -5,7 +5,7 @@ const CircularProgress = dynamic(() =>
 );
 
 //Styles
-import styles from "../styles/loading.module.css";
+import styles from "@css/loading.module.css";
 
 let Loading = (props) => {
   return (

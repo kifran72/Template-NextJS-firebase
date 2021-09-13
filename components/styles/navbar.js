@@ -5,7 +5,7 @@ const Link = dynamic(() => import("next/link"));
 import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 
 // Styles
-import styles from "@css/Navbar.module.css";
+import styles from "@css/navbar.module.css";
 
 // Material
 const Button = dynamic(() => import("@material-ui/core/Button"));

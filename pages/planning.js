@@ -5,7 +5,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@utils/firebase";
 
 // Styles
-import styles from "@css/Calendar.module.css";
+import styles from "@css/calendar.module.css";
 
 // Components
 const Head = dynamic(() => import("next/head"));

@@ -1,5 +1,5 @@
 //Styles
-import styles from "@css/BackgroundAnimation.module.css";
+import styles from "@css/background.module.css";
 
 const Background = (props) => {
   const user = props.user;

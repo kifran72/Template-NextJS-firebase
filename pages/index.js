@@ -4,7 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@utils/firebase";
 
 //Styles
-import styles from "@css/Home.module.css";
+import styles from "@css/home.module.css";
 
 // Material
 const KeyboardArrowUpIcon = dynamic(() =>
